@@ -2,10 +2,13 @@ import os
 import time
 import google.generativeai as genai
 import csv
+from dotenv import load_dotenv
+
+# loading the env here.
+load_dotenv()
 
 # Replace with your API key directly or through environment variable
-GENAI_API_KEY = "AIzaSyDAj7MfChlMgtQg1N2TGUd9I0AJu73IJx8"
-genai.configure(api_key=GENAI_API_KEY)
+genai.configure(api_key=os.getenv("GENAI_API_KEY"))
 
 # Store uploaded file URIs to prevent re-uploading
 uploaded_files = {}
@@ -36,9 +39,9 @@ def wait_for_files_active(files):
 
 # Upload files only once
 files = [
-    upload_to_gemini("B.Tech Semester 6 Publish Result File.csv", mime_type="text/csv"),
-    upload_to_gemini("B.Tech CS Semester 6 Publish Result File.csv", mime_type="text/csv"),
-    upload_to_gemini("B.Tech FS Semester 6 Publish Result File.csv", mime_type="text/csv"),
+    upload_to_gemini("Data/B.Tech Semester 6 Publish Result File.csv", mime_type="text/csv"),
+    upload_to_gemini("Data/B.Tech CS Semester 6 Publish Result File.csv", mime_type="text/csv"),
+    upload_to_gemini("Data/B.Tech FS Semester 6 Publish Result File.csv", mime_type="text/csv"),
 ]
 
 # Wait for files to be processed
